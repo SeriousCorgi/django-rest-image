@@ -1,0 +1,14 @@
+Build REST API with Django and Django Rest Framework (https://www.django-rest-framework.org/) that allows to upload images and list all uploaded images with additional filters.
+1. User authentication is unnessesary, endpoints could be public
+2. For all views, please use class-based views https://www.django-rest-framework.org/api-guide/generic-views/
+3. Also make use of serializers to validate and serialize model data https://www.django-rest-framework.org/api-guide/serializers/#modelserializer
+4. For filters please use https://www.django-rest-framework.org/api-guide/filtering/
+5. Images could be uploaded as drafts, can include title and description fields and must have a maximum allowed upload size.
+6. Following actions are expected to be accomplished with endponts:
+a) Updating image title and description or publishing it (making non-draft)
+b) Listing all draft images
+c) Listing all published images
+d) Filtering any image list by a hashtag (occurence of #somehashtag in the description field, could be any hashtag)
+e) Filtering by date of image publication
+Bonus points:
+a) Create and store image thumbnail along with each image uploaded
