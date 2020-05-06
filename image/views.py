@@ -7,9 +7,9 @@ from .models import Image
 # Create your views here.
 
 
-class ImageViewUpload(viewsets.ModelViewSet):
+class ImageUploadView(viewsets.ModelViewSet):
     """
-    API endpoint 
+    API endpoint
     """
-    permission_classes = (permissions.AllowAny,)
+    queryset = Image.objects.all()
     serializer_class = ImageSerializer

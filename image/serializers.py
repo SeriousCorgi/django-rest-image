@@ -6,4 +6,4 @@ from .models import Image
 class ImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Image
-        fields = '__all__'
+        fields = ('id', 'image',)

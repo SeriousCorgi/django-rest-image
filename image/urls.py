@@ -4,7 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 
-router.register(r'upload', views.ImageViewUpload, basename="upload")
+router.register(r'upload', views.ImageUploadView, basename="upload")
 # router.register(r'delete', views.ImageViewDelete, basename="delete")
 # router.register(r'update', views.ImageViewUpdate, basename="update")
 # router.register(r'get', views.ImageViewGet, basename="get")
