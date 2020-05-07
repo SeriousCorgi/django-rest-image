@@ -8,7 +8,10 @@ Build REST API with Django and Django Rest Framework (https://www.django-rest-fr
 a) Updating image title and description or publishing it (making non-draft)
 b) Listing all draft images
 c) Listing all published images
-d) Filtering any image list by a hashtag (occurence of #somehashtag in the description field, could be any hashtag)
+d) Filtering any image list by a hashtag (occurence of #somehashtag in the description field, could be any hashtag) 
 e) Filtering by date of image publication
 Bonus points:
 a) Create and store image thumbnail along with each image uploaded
+
+
+5 ->https://stackoverflow.com/a/19650600, https://stackoverflow.com/a/6195783
