@@ -11,5 +11,11 @@ class ImageUploadView(viewsets.ModelViewSet):
     """
     API endpoint
     """
-    queryset = Image.objects.all()
     serializer_class = ImageSerializer
+
+    def get_queryset(self):
+        """
+        TODO: draft, hashtag, date_order
+        """
+        queryset = Image.objects.all()
+        return queryset
