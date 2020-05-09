@@ -11,13 +11,12 @@ $(document).ready(function () {
                 let id = image.id
                 let title = image.title
                 let description = image.description
-                let tag = image.hashtag
-                let date = image.published
+                let thumb_url = image.thumbnail
                 let img_url = image.image
 
                 $new_div = "<input id='input-publish' name='publish' type='radio' value='" + id + "'><div class='image'>" +
                     "<h3>" + title + "</h3>" +
-                    "<img src='" + img_url + "'>" +
+                    "<a href='" + img_url + "'><img src='" + thumb_url + "'></a>" +
                     "<p>" + description + "</p>" +
                     "</div>"
                 $("#publish").append($new_div);
