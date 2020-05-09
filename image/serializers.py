@@ -14,5 +14,6 @@ class ImageSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Image
-        fields = ('id', 'title', 'description', 'hashtag', 'image',)
+        fields = ('id', 'title', 'description',
+                  'hashtag', 'published', 'image',)
         read_only_fields = ('hashtag', 'published')
