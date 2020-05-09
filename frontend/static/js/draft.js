@@ -14,7 +14,10 @@ $(document).ready(function () {
                 let thumb_url = image.thumbnail
                 let img_url = image.image
 
-                $new_div = "<input id='input-publish' name='publish' type='radio' value='" + id + "'><div class='image'>" +
+                $new_div = "<input id='input-publish' name='publish' type='radio' value='" + id + "'>" +
+                    "<button id='delete' onclick='delete_func(this.value)' value='" + id + "'>Delete</button>" +
+                    "<button id='update' onclick='update_func(this.value)'value='" + id + "'>Update</button><br>" +
+                    "<div class='image'>" +
                     "<h3>" + title + "</h3>" +
                     "<a href='" + img_url + "'><img src='" + thumb_url + "'></a>" +
                     "<p>" + description + "</p>" +
@@ -29,7 +32,7 @@ $(document).ready(function () {
             $id = $("#input-publish:checked").val();
 
             let img_url = url + $id + "/";
-            console.log(img_url);
+            // console.log(img_url);
 
             $.ajax({
                 url: img_url,
@@ -46,3 +49,31 @@ $(document).ready(function () {
         }
     });
 });
+
+function update_func(id) {
+
+    let img_url = "http://localhost:8000/api/upload/" + id + "/";
+    // console.log(img_url);
+
+    let title = prompt("Title");
+    let description = prompt("Description");
+
+    let fd = new FormData
+    if (title) { fd.append('title', title); }
+    if (description) { fd.append('description', description); }
+
+    $.ajax({
+        url: img_url,
+        type: 'PUT',
+        data: fd,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log("success");
+        },
+        error: function (data) {
+            console.log("error");
+        }
+    });
+}

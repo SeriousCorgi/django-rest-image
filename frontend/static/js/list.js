@@ -9,9 +9,10 @@ $(document).ready(function () {
         let data = {
             published: true
         }
-        if (!($hashtag === "")) {
-            data.append({ hashtag: hashtag });
+        if ($hashtag) {
+            data['hashtag'] = $hashtag;
         }
+        console.log(data);
         let url = "http://localhost:8000/api/upload/"
         $.get(url, data, function (data, status) {
             if (status == "success") {
@@ -26,6 +27,7 @@ $(document).ready(function () {
                 }
 
                 data.forEach(image => {
+                    let id = image.id
                     let title = image.title
                     let description = image.description
                     let tag = image.hashtag
@@ -35,6 +37,8 @@ $(document).ready(function () {
 
                     $new_div = "<div class='image'>" +
                         "<h2>" + title + "</h4>" +
+                        "<button id='delete' onclick='delete_func(this.value)' value='" + id + "'>Delete</button>" +
+                        "<button id='update' onclick='update_func(this.value)'value='" + id + "'>Update</button><br>" +
                         "<a href='" + img_url + "'><img src='" + thumb_url + "'></a>" +
                         "<p>" + description + "</p>" +
                         "<p>" + date + "</p>" +
@@ -45,3 +49,49 @@ $(document).ready(function () {
         })
     });
 });
+
+function delete_func(id) {
+
+    let img_url = "http://localhost:8000/api/upload/" + id + "/";
+    // console.log(img_url);
+
+    $.ajax({
+        url: img_url,
+        type: 'DELETE',
+        data: {},
+        success: function (data) {
+            console.log("success");
+        },
+        error: function (data) {
+            console.log("error");
+        }
+    });
+}
+
+function update_func(id) {
+
+    let img_url = "http://localhost:8000/api/upload/" + id + "/";
+    // console.log(img_url);
+
+    let title = prompt("Title");
+    let description = prompt("Description");
+
+    let fd = new FormData
+    if (title) { fd.append('title', title); }
+    if (description) { fd.append('description', description); }
+
+    $.ajax({
+        url: img_url,
+        type: 'PUT',
+        data: fd,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log("success");
+        },
+        error: function (data) {
+            console.log("error");
+        }
+    });
+}

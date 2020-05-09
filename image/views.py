@@ -34,8 +34,19 @@ class ImageUploadView(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         image = self.get_object()
         published = self.request.data.get("published", None)
+        title = self.request.data.get("title", None)
+        description = self.request.data.get("description", None)
+
         if published is not None:
             image.published = datetime.now()
+
+        if title is not None:
+            image.title = title
+
+        if description is not None:
+            image.description = description
+            image.hashtag.clear()
+
         image.save()
 
         return HttpResponse(image)
