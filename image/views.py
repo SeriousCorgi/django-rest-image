@@ -20,7 +20,10 @@ class ImageUploadView(viewsets.ModelViewSet):
 
         published = self.request.query_params.get('published', None)
         if published is not None:
-            queryset = queryset.filter(published__isnull=False)
+            if (published == "true"):
+                queryset = queryset.filter(published__isnull=False)
+            else:
+                queryset = queryset.filter(published__isnull=True)
 
         hashtag = self.request.query_params.get('hashtag', None)
         if hashtag is not None:
